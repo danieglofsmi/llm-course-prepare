@@ -3,11 +3,16 @@
 第六章专注于分类任务的微调，任务更为具体、易于评估（Task-Specific Fine-Tuning）。通过这种方式，原本具有通用能力的大模型可以精确地预测特定标签空间内的任务，例如进行垃圾邮件检测、情感分析或主题分类。
 
 ## 代码
+### 课程代码
 - 01_main-chapter-code 如何将一个仅经过预测下一个词（Next-token Prediction）训练的生成式解码器（Decoder-only）架构模型（gpt-2），转化为一个判别式分类器。系统性地演示了从原始数据集下载到使用gpt2训练，以及模型评估的全过程，讲解了如何通过保留预训练模型的大部分权重，给模型添加一个分类头实现分类，包括权重的冻结与解冻、损失函数的修改，在较小的标注数据集上实现知识的迁移。
 
 - 02bonus_additional-experiments/additional-experiments.py：支持通过命令行参数调整微调的各个参数细节，包括层数、模型规模、训练token位置选择、上下文长度以及填充策略
   
 - 03_bonus_imdb-classification：引入了 IMDb 电影评论数据集（50,000条样本） 。这一部分不仅扩展了实验的规模，还通过对比实验引入了 BERT、RoBERTa 以及更新的 ModernBERT 等编码器（Encoder）模型，从而在更高维度上探讨了生成式架构与判别式架构在分类任务中的优劣。
+  
+### 补充代码
+- transformers库示例代码，使用trainer或pytorch微调文本分类模型，在GLUE等benchmark上测评（https://github.com/huggingface/transformers/tree/main/examples/pytorch/text-classification）
+- 使用BERT在SciTail science entailment数据集上进行文本分类任务的训练。（https://github.com/huggingface/transformers-research-projects/tree/main/self-training-text-classification）
 
 
 ### 经典习题：
@@ -50,6 +55,8 @@
 ## 论文/博客/视频
 - 配套视频（https://www.youtube.com/watch?v=5PFXJYme4ik）（https://www.bilibili.com/video/BV1TConYWEiq/?spm_id_from=333.337.search-card.all.click&vd_source=f7fcafd1f7510675be530cdb12572d7b）
 - 博客：Theory behind SFT（https://aiengineering.academy/LLM/TheoryBehindFinetuning/SFT/）
-- 论文：How to Fine-Tune BERT for Text Classification?（https://arxiv.org/pdf/1905.05583）
+- 论文：
+  1. How to Fine-Tune BERT for Text Classification?（https://arxiv.org/pdf/1905.05583）
+  2. STraTA: Self-Training with Task Augmentation for Better Few-shot Learning：在无标签数据集上（https://aclanthology.org/2021.emnlp-main.462.pdf）
 - 技术报告：The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities（chapter 6： Stage 4: Selection of Fine-Tuning Techniques and Appropriate Model Configurations）（https://arxiv.org/pdf/2408.13296）
 - 拓展视频：2025生成式人工智能（吴恩达）ep13：Fine-tuning on a single task（防止灾难性遗忘）（https://www.bilibili.com/video/BV1sMEyzhEM3?spm_id_from=333.788.videopod.episodes&vd_source=f7fcafd1f7510675be530cdb12572d7b&p=13）
